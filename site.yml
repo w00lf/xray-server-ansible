@@ -1,0 +1,13 @@
+# Install python and aptitude on the target machines (apt-get install python aptitude)
+# Copy ssh public key to machines (ssh-copy-id user@host)
+---
+- name: Install Rails Server
+  hosts: xray_servers
+  remote_user: root
+  gather_facts: yes # don't gather facts because /usr/bin/python isn't set
+  roles:
+    - deploy_user
+    - requirements
+    - xray
+    - network_additonal_secutiry
+    - geerlingguy.security
